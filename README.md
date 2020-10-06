@@ -4,10 +4,10 @@ Animate
 Documentation coming soon..
 
 <p align="center">
-    <img src="images/atta_original.gif" height="200" title="Original">
-    <img src="images/atta_stylized.gif" height="200" alt="Styled Video">
-    <img src="images/atta_sbr.gif" height="200" alt="Stroke-based rendering">
-    <img src="images/atta_painted.gif" height="200" alt="Paintings">
+    <img src="images/atta_original.gif" height="150" title="Original">
+    <img src="images/atta_stylized.gif" height="150" alt="Styled Video">
+    <img src="images/atta_sbr.gif" height="150" alt="Stroke-based rendering">
+    <img src="images/atta_painted.gif" height="150" alt="Paintings">
 </p>
 
 <p align="center">
@@ -27,7 +27,7 @@ Below (left to right) is the original image, the 12 colors of paint to use, and 
 
 <p align="center">
     <img src="images/sbr_description/vangogh_original.jpg" height="200" title="">
-    <img src="images/sbr_description/vangogh_allowed_colors.jpg" width="200" alt="">
+    <img src="images/sbr_description/vangogh_allowed_colors.png" width="200" alt="">
     <img src="images/sbr_description/vangogh_discrete.jpg" height="200" alt="">
 </p>
 
@@ -68,8 +68,8 @@ The stroke meanders and can snake around up to a maximum length or to where it s
 Our machine paints bezier curves, so we need to translate these unstructured curves to three points.  We do this by performing PCA on the points to project them onto a line.  We take the first last and middle points on this line as the points for our bezier curve.
 
 <p align="center">
-    <img src="images/sbr_description/vangogh_meandering_stroke.jpg" width="200" alt="">
-    <img src="images/sbr_description/vangogh_clean_stroke.jpg" width="200" alt="">
+    <img src="images/sbr_description/vangogh_meandering_stroke.jpg" width="300" alt="">
+    <img src="images/sbr_description/vangogh_clean_stroke.jpg" width="300" alt="">
 </p>
 
 Once we decide on the brush stroke, we can still reject the stroke depending on how much it helps or hurts the loss between our canvas and the target image.
@@ -77,11 +77,12 @@ Once we decide on the brush stroke, we can still reject the stroke depending on 
 We keep adding strokes in this manner until we hit the maximum number of strokes set.  Then we can move onto another brush size or just return the canvas and brush stroke list.
 
 <p align="center">
-    <img src="images/sbr_description/vangogh_stroke_by_stroke.gif" width="300" alt="">
+    <img src="images/sbr_description/vangogh_discrete.jpg" height="300" alt="">
+    <img src="images/sbr_description/vangogh_stroke_by_stroke.gif" height="300" alt="">
 </p>
 
 Another Example:
 <p align="center">
-    <img src="images/sbr_description/ye.jpg" width="300" alt="">
-    <img src="images/sbr_description/ye_stroke_by_stroke.gif" width="300" alt="">
+    <img src="images/sbr_description/ye.jpg" height="300" alt="">
+    <img src="images/sbr_description/ye_stroke_by_stroke.gif" height="300" alt="">
 </p>
