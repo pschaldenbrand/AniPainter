@@ -42,6 +42,7 @@ In the `output_dir` (note: if you're painting a video it will be as many directo
     <img src="images/coolin_original.gif" height="200" title="Original">
     <img src="images/coolin_sbr.gif" height="200" alt="Stroke-based rendering">
     <img src="images/coolin_painted.gif" height="200" alt="Paintings">
+    <p>Original animation via [Colin Van 't Veld](https://www.instagram.com/colindesign/?hl=en)</p>
 </p>
 
 ## Stroke-Based Rendering Algorithm
