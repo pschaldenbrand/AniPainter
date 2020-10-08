@@ -103,6 +103,7 @@ def save_colors(allowed_colors, actions, output_dir):
 
     plt.tight_layout()
     plt.savefig(os.path.join(output_dir, 'colors.png'))
+    plt.close(fig)
 
 def group_strokes_by_color(strokes):
     ''' Sort the strokes by color '''
@@ -202,7 +203,7 @@ def save_strokes_for_robot(S, img, painting, allowed_colors, ignore_whites=True,
     cv2.imwrite(os.path.join(output_dir, 'discrete_painting.jpg'), cv2.resize(discrete_painting.cpu().numpy(), (img.shape[0]*4, img.shape[1]*4)))
 
     save_colors(allowed_colors, S, output_dir)
-    # plt.show()
+
     df = pd.DataFrame(S)
     # Sort by brush, then color
     df = df.sort_values([6, 12], ascending=[False, True])
@@ -239,8 +240,6 @@ def discretize_image(img, allowed_colors):
 
     img_disc = np.array(allowed_colors)[argmin]
     img_disc = np.reshape(img_disc, (img.shape[0],img.shape[1], 3))
-#     plt.imshow(img_disc[:,:,::-1])
-#     plt.show()
 
     return (img_disc[:,:,::-1] * 255.).astype(np.uint8)
 
@@ -317,10 +316,6 @@ def make_stroke(x0, y0, r, ref_image, canvas, max_stroke_length=None):
         D = torch.abs(D) * (1 - torch.abs(ref_image[max(x-grid//2, 0):x+grid//2, max(y-grid//2, 0):y+grid//2] \
                  - canvas_hat[max(x-grid//2, 0):x+grid//2, max(y-grid//2, 0):y+grid//2])/(255.*3))
 
-#         plt.matshow(torch.sum(torch.abs(D), dim=2).cpu())
-#         plt.colorbar()
-#         plt.show()
-
         # # Blur it doesn't seem to help
         # D = torch.nn.functional.avg_pool2d(D, max(r//2, 2), stride=1)
 
@@ -331,9 +326,6 @@ def make_stroke(x0, y0, r, ref_image, canvas, max_stroke_length=None):
 
         noise = torch.randn(D.shape[0], D.shape[1], device=device)*0.0001
         D = D + noise
-#         plt.matshow(D.cpu())
-#         plt.colorbar()
-#         plt.show()
 
         while(True): # Keep trying coordinates until you get one you haven't been to before
             dx, dy = np.unravel_index(D.argmin().cpu(), D.shape)
@@ -365,8 +357,7 @@ def make_stroke(x0, y0, r, ref_image, canvas, max_stroke_length=None):
 
         x, y = x_hat, y_hat
         K.append((x,y))
-#     plt.imshow(canvas_hat.cpu())
-#     plt.show()
+
     return K
 
 
@@ -512,8 +503,6 @@ def paint_layer(canvas, reference_image, r, T, curved, pix_diff_thresh=30):
 #         if len(S) % 50 == 0:
 #             plt.imshow(canvas)
 #             plt.show()
-#     plt.imshow(canvas)
-#     plt.show()
 #     print(loss_after_stroke)
     return canvas, S
 
@@ -555,7 +544,7 @@ def get_frames(content_video_fn, animation_fps=10):
 
     fps = video.get(cv2.CAP_PROP_FPS)
 
-    frame_skip = fps // animation_fps
+    frame_skip = max(fps // animation_fps, 1)
 
     frames, i = [], 0
     success, image = video.read()
