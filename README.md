@@ -1,7 +1,6 @@
 # AniPainter
-Animate
+Animate a video or paint an image by running our stroke-based rendering algorithm over your video/image.  Convert your image/video into a list of brush stroke instructions for a robot painter.  We use a TinkerKit Braccio robot arm.  Robot code available at: https://create.arduino.cc/editor/skeeter_man/c5805760-4e8c-48e7-898d-a6abf2ed9097/preview
 
-Documentation coming soon..
 
 <p align="center">
     <img src="images/atta_original.gif" height="150" title="Original">
@@ -9,6 +8,35 @@ Documentation coming soon..
     <img src="images/atta_sbr.gif" height="150" alt="Stroke-based rendering">
     <img src="images/atta_painted.gif" height="150" alt="Paintings">
 </p>
+
+
+## Usage
+
+```
+python paint.py <video or image> [--max_strokes 600] [--r 6] [--w 200] [--ignore_whites True] [--n_colors 12] [--animation_fps 10] [--output_dir animation_instructions]
+```
+
+- `<video or image` - The path to the video or image file to paint. Supported types: .avi, .mp4, .mpeg, .mov, .jpg, .jpeg, .png, or .bmp
+- `max_strokes` - Maximum number of brush strokes to try to generate
+- `r` - Radius of the paint brush in pixels
+- `w`, `h` - Width and Height of the canvas in pixels. This size strongly affects speed of the algorithm.
+- `ignore_whites` - Do not include while paint strokes in the actions.csv.  Our robot paints on white paper, so the white paint isn't always necessary.
+- `n_colors` - Number of discrete paint colors to use.
+- `animation_fps` - How many frames per second the output should be.  Needs to be less than or equal to the input video's fps.
+- `output_dir` - Where to save the instructions
+
+## Output
+In the `output_dir` (note: if you're painting a video it will be as many directories as frames):
+- `actions.csv` - List of brush stroke instructions for the robot.
+  - Each row is x0, y0, x1, y1, x2, y2, r0, r1, o0, o1, c0, c1, c2
+  - x's and y's describe a bezier curve
+  - r is the radius in pixels at either end of the stroke (r0 and r1 are always the same)
+  - o describes the opacity of the stroke which is always an opaque 1.0
+  - c describes the color of the stroke in reference to the index of the color in `output_dir/[]/colors.png` (left to right. top to bottom).
+- `target.jpg` - Image prior to painting, discretized using the `n_colors` of paint.
+- `painting.jpg` - The output painting with potentially more than `n_colors` of paint.
+- `discrete_painting.jpg` - The output painting using the `n_colors` of paint.
+- `colors.png` - The `n_colors` of paint along with how many times they were used.
 
 <p align="center">
     <img src="images/coolin_original.gif" height="200" title="Original">
@@ -57,7 +85,7 @@ We subtract the stroke color from the reference image, then we look in the area 
 
 Each point in the stroke is represented by a circle of the given radius.
 
-The stroke meanders and can snake around up to a maximum length or to where it stops decreasing the loss. 
+The stroke meanders and can snake around up to a maximum length or to where it stops decreasing the loss.
 
 <p align="center">
     <img src="images/sbr_description/vangogh_stroke0.gif" width="200" title="">
