@@ -46,6 +46,12 @@ In the `output_dir` (note: if you're painting a video it will be as many directo
 
 Original animation above via [Colin Van 't Veld](https://www.instagram.com/colindesign/?hl=en)
 
+<p align="center">
+    <img src="images/painting_process.png" height="500" title="Painting Process">
+</p>
+
+The painting process is shown above. A given video is broken up into frames, the frames can be styled using a style/texture image, each frame is then converted into a sequence of brush stroke instructions that can be rendered on the computer, and lastly the robot paints the instructions.
+
 ## Stroke-Based Rendering Algorithm
 
 We use K-means clustering on the target image to get the k discrete colors used for painting.
@@ -115,4 +121,20 @@ Another Example:
 <p align="center">
     <img src="images/sbr_description/ye.jpg" height="300" alt="">
     <img src="images/sbr_description/ye_stroke_by_stroke.gif" height="300" alt="">
+</p>
+
+## The Robot Painter
+
+We use a TinkerKit Braccio robot arm shown below.  [Robot code is available here](https://create.arduino.cc/editor/skeeter_man/c5805760-4e8c-48e7-898d-a6abf2ed9097/preview)  This arm retails for about $220 USD, making it the least expensive robot we've been able to find for painting by a factor of 3-100.
+
+<p align="center">
+    <img src="images/robot_painting.gif" height="300" alt="">
+</p>
+
+Since the robot is low-end, its accuracy is far below other robot painters.  The arm paints 20x20cm paintings with up to 12 colors.  It performs about 14 strokes per minute.  A paint brush is attached to the arms hand, and multiple brushes can be used while painting.
+
+
+<p align="center">
+    <img src="images/sbr_description/vangogh_discrete.jpg" height="300" alt="">
+    <img src="images/sbr_description/vangogh_painting.jpg" height="300" alt="">
 </p>
