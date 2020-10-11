@@ -9,7 +9,7 @@ Animate a video or paint an image by running our stroke-based rendering algorith
     <img src="images/atta_painted.gif" height="150" alt="Paintings">
 </p>
 
-Without stylizing the video first:
+Without styling the input video:
 
 <p align="center">
     <img src="images/atta_no_style_discrete.gif" height="150" title="Original">
@@ -58,7 +58,7 @@ Original animation above via [Colin Van 't Veld](https://www.instagram.com/colin
     <img src="images/animation_process.png" height="500" title="Painting Process">
 </p>
 
-The painting process is shown above. A given video is broken up into frames, the frames can be styled using a style/texture image, each frame is then converted into a sequence of brush stroke instructions that can be rendered on the computer, and lastly the robot paints the instructions.
+The painting process is shown above. A given video is broken up into frames, the frames can be styled using a style/texture image, each frame is then converted into a sequence of brush stroke instructions that can be rendered on the computer, and lastly the robot paints the instructions.  Please see [STROTSS-Video](https://github.com/pschaldenbrand/STROTSS-Video) for styling the input video.
 
 ## Stroke-Based Rendering Algorithm
 
