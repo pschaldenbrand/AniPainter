@@ -55,7 +55,7 @@ In the `output_dir` (note: if you're painting a video it will be as many directo
 Original animation above via [Colin Van 't Veld](https://www.instagram.com/colindesign/?hl=en)
 
 <p align="center">
-    <img src="images/painting_process.png" height="500" title="Painting Process">
+    <img src="images/animation_process.png" height="500" title="Painting Process">
 </p>
 
 The painting process is shown above. A given video is broken up into frames, the frames can be styled using a style/texture image, each frame is then converted into a sequence of brush stroke instructions that can be rendered on the computer, and lastly the robot paints the instructions.
