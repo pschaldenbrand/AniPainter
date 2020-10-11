@@ -9,6 +9,14 @@ Animate a video or paint an image by running our stroke-based rendering algorith
     <img src="images/atta_painted.gif" height="150" alt="Paintings">
 </p>
 
+Without stylizing the video first:
+
+<p align="center">
+    <img src="images/atta_no_style_discrete.gif" height="150" title="Original">
+    <img src="images/atta_no_style_sbr.gif" height="150" alt="Stroke-based rendering">
+    <img src="images/atta_no_style_painted.gif" height="150" alt="Paintings">
+</p>
+
 
 ## Usage
 
