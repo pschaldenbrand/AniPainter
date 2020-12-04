@@ -627,31 +627,32 @@ def animate(video_fn, R, T=[100], n_colors=6, ignore_whites=True, animation_fps=
         i += 1
 
 
-parser = argparse.ArgumentParser(
-    description='Paint each frame of a video, and generate instruction files needed for robot painter.')
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description='Paint each frame of a video, and generate instruction files needed for robot painter.')
 
-parser.add_argument("file", type=str, help='Path of the video or image to paint.')
+    parser.add_argument("file", type=str, help='Path of the video or image to paint.')
 
-parser.add_argument('--max_strokes', default=600, type=int, help='Maximum number of strokes per frame.')
-parser.add_argument('--r', default=6, type=int, help='Radius of paint brush in pixels.')
-parser.add_argument('--w', default=200, type=int, help='Width of paint canvas in pixels.')
-parser.add_argument('--h', default=200, type=int, help='Height of paint canvas in pixels.')
+    parser.add_argument('--max_strokes', default=600, type=int, help='Maximum number of strokes per frame.')
+    parser.add_argument('--r', default=6, type=int, help='Radius of paint brush in pixels.')
+    parser.add_argument('--w', default=200, type=int, help='Width of paint canvas in pixels.')
+    parser.add_argument('--h', default=200, type=int, help='Height of paint canvas in pixels.')
 
-parser.add_argument('--ignore_whites', default=True, type=bool, help='Do not include white paint strokes in instructions')
-parser.add_argument('--n_colors', default=12, type=int, help='Number of colors of paint to use.')
-parser.add_argument('--animation_fps', default=10, type=int, help='Number of frames per second for the animation.')
-parser.add_argument('--output_dir', type=str, default='animation_instructions', help='Where to save paintings and instructions.')
+    parser.add_argument('--ignore_whites', default=True, type=bool, help='Do not include white paint strokes in instructions')
+    parser.add_argument('--n_colors', default=12, type=int, help='Number of colors of paint to use.')
+    parser.add_argument('--animation_fps', default=10, type=int, help='Number of frames per second for the animation.')
+    parser.add_argument('--output_dir', type=str, default='animation_instructions', help='Where to save paintings and instructions.')
 
-args = parser.parse_args()
+    args = parser.parse_args()
 
-file_ext = os.path.splitext(args.file)[1]
+    file_ext = os.path.splitext(args.file)[1]
 
-if file_ext in ['.avi','.mp4', '.mpeg', '.mov']:
-    animate(args.file, [args.r], T=[args.max_strokes], n_colors=args.n_colors, ignore_whites=args.ignore_whites,
-            animation_fps=args.animation_fps, output_dir=args.output_dir, w=args.w, h=args.h)
-elif file_ext in ['.jpg','.jpeg', '.png', '.bmp']:
-    paint_fn(args.file, [args.r], T=[args.max_strokes], n_colors=args.n_colors, ignore_whites=args.ignore_whites,
-            output_dir=args.output_dir, w=args.w, h=args.h)
-else:
-    print('You must specify a video or image to paint.')
-    print('Your file extention must be one of: .avi, .mp4, .mpeg, .mov, .jpg, .jpeg, .png, or .bmp')
+    if file_ext in ['.avi','.mp4', '.mpeg', '.mov']:
+        animate(args.file, [args.r], T=[args.max_strokes], n_colors=args.n_colors, ignore_whites=args.ignore_whites,
+                animation_fps=args.animation_fps, output_dir=args.output_dir, w=args.w, h=args.h)
+    elif file_ext in ['.jpg','.jpeg', '.png', '.bmp']:
+        paint_fn(args.file, [args.r], T=[args.max_strokes], n_colors=args.n_colors, ignore_whites=args.ignore_whites,
+                output_dir=args.output_dir, w=args.w, h=args.h)
+    else:
+        print('You must specify a video or image to paint.')
+        print('Your file extention must be one of: .avi, .mp4, .mpeg, .mov, .jpg, .jpeg, .png, or .bmp')
