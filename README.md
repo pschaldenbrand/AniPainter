@@ -33,6 +33,15 @@ python paint.py <video or image> [--max_strokes 600] [--r 6] [--w 200] [--ignore
 - `--animation_fps` - How many frames per second the output should be.  Needs to be less than or equal to the input video's fps.
 - `--output_dir` - Where to save the instructions.
 
+## Installation
+
+AniPainter has been tested with Python 3.6 and 3.7.  
+
+Run the following line to install the necessary versions of dependencies for AniPainter.
+```
+pip install torch==1.4.0 numpy==1.16.2 torchvision==0.5.0 pandas==1.0.5
+```
+
 ## Output
 In the `output_dir` (note: if you're painting a video it will be as many directories as frames):
 - `actions.csv` - List of brush stroke instructions for the robot.
